@@ -1,4 +1,4 @@
 Flask==2.2.3
 Flask-SQLAlchemy==2.5.1
 psycopg2-binary==2.9.5
-werkzeug==2.1.2  # Asegúrate de usar una versión compatible
+werkzeug>=2.2.2
