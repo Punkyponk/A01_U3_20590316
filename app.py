@@ -60,5 +60,17 @@ def update(id):
     
     return render_template('update.html', album=album)
 
+@app.route('/delete/<int:id>', methods=['GET'])
+def delete(id):
+    # Recuperamos el álbum a eliminar
+    album = Album.query.get_or_404(id)
+    
+    # Eliminamos el álbum de la base de datos
+    db.session.delete(album)
+    db.session.commit()
+    
+    # Redirigimos a la página principal (index)
+    return redirect(url_for('index'))
+
 if __name__ == "__main__":
     app.run(debug=True)

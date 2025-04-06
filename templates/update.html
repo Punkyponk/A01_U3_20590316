@@ -1,32 +1,79 @@
-<!-- templates/update.html -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Álbum</title>
+    <style>
+        /* CSS igual al de index.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-size: 16px;
+        }
+
+        h1 {
+            color: #F1F1F1;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        form input, form button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #FFF;
+            font-size: 16px;
+        }
+
+        form button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
-    <h1>Actualizar Álbum: {{ album.title }}</h1>
-    
+    <h1>Actualizar Álbum</h1>
+
     <form method="POST">
         <label for="title">Título:</label>
-        <input type="text" id="title" name="title" value="{{ album.title }}" required><br><br>
+        <input type="text" id="title" name="title" value="{{ album.title }}" required>
 
         <label for="artist">Artista:</label>
-        <input type="text" id="artist" name="artist" value="{{ album.artist }}" required><br><br>
+        <input type="text" id="artist" name="artist" value="{{ album.artist }}" required>
 
         <label for="genre">Género:</label>
-        <input type="text" id="genre" name="genre" value="{{ album.genre }}" required><br><br>
+        <input type="text" id="genre" name="genre" value="{{ album.genre }}" required>
 
         <label for="release_date">Fecha de Lanzamiento:</label>
-        <input type="date" id="release_date" name="release_date" value="{{ album.release_date.strftime('%Y-%m-%d') }}" required><br><br>
+        <input type="date" id="release_date" name="release_date" value="{{ album.release_date.strftime('%Y-%m-%d') }}" required>
 
         <button type="submit">Actualizar Álbum</button>
     </form>
 
-    <br>
-    <a href="{{ url_for('index') }}">Volver a la lista de albums</a>
+    <a href="{{ url_for('index') }}">Volver al inicio</a>
 </body>
 </html>

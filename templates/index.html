@@ -1,11 +1,164 @@
-<!-- templates/index.html -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albums de Música</title>
+    <style>
+        /* General */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-size: 16px;
+        }
+
+        h1, h2 {
+            color: #F1F1F1;
+            margin-bottom: 20px;
+        }
+
+        /* Header */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #F1F1F1;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2C2C2C;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #1E1E1E;
+        }
+
+        td {
+            border-bottom: 1px solid #444;
+        }
+
+        /* Form Styling */
+        form {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        form input, form button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #FFF;
+            font-size: 16px;
+        }
+
+        form input[type="date"] {
+            background-color: #333;
+            color: #FFF;
+        }
+
+        form button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        /* Links */
+        a {
+            color: #4CAF50;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #81C784;
+        }
+
+        a:active {
+            color: #388E3C;
+        }
+
+        /* Dynamic Button for Table Actions */
+        td a {
+            padding: 8px 16px;
+            background-color: #555;
+            color: #FFF;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-right: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        td a:hover {
+            background-color: #666;
+            transform: translateY(-2px);
+        }
+
+        td a:active {
+            background-color: #444;
+        }
+
+        /* Hover Effects */
+        table tr:hover {
+            background-color: #383838;
+        }
+
+        table tr:hover td {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        button, input[type="text"], input[type="date"], select {
+            transition: all 0.3s ease;
+        }
+
+        button:focus, input:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            form {
+                width: 90%;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Albums de Música</h1>
@@ -30,8 +183,8 @@
                     <td>{{ album.genre }}</td>
                     <td>{{ album.release_date }}</td>
                     <td>
-                        <!-- Enlace para actualizar el álbum -->
-                        <a href="{{ url_for('update', id=album.id) }}">Actualizar</a>
+                        <a href="{{ url_for('update', id=album.id) }}">Actualizar</a> | 
+                        <a href="{{ url_for('delete', id=album.id) }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este álbum?');">Eliminar</a>
                     </td>
                 </tr>
             {% endfor %}
