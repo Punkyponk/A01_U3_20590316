@@ -19,6 +19,7 @@
                 <th>Artista</th>
                 <th>Género</th>
                 <th>Fecha de Lanzamiento</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,10 @@
                     <td>{{ album.artist }}</td>
                     <td>{{ album.genre }}</td>
                     <td>{{ album.release_date }}</td>
+                    <td>
+                        <!-- Enlace para actualizar el álbum -->
+                        <a href="{{ url_for('update', id=album.id) }}">Actualizar</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

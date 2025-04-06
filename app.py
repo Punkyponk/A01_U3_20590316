@@ -40,5 +40,25 @@ def create():
     
     return render_template('create.html')
 
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    # Recuperamos el álbum a editar
+    album = Album.query.get_or_404(id)
+    
+    if request.method == 'POST':
+        # Actualizamos los datos del álbum con los nuevos valores
+        album.title = request.form['title']
+        album.artist = request.form['artist']
+        album.genre = request.form['genre']
+        album.release_date = datetime.strptime(request.form['release_date'], '%Y-%m-%d')  # Convertimos la fecha
+        
+        # Guardamos los cambios en la base de datos
+        db.session.commit()
+        
+        # Redirigimos a la página principal (index)
+        return redirect(url_for('index'))
+    
+    return render_template('update.html', album=album)
+
 if __name__ == "__main__":
     app.run(debug=True)
