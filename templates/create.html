@@ -1,0 +1,32 @@
+<!-- templates/create.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Álbum</title>
+</head>
+<body>
+    <h1>Crear Nuevo Álbum</h1>
+    
+    <form method="POST">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="artist">Artista:</label>
+        <input type="text" id="artist" name="artist" required><br><br>
+
+        <label for="genre">Género:</label>
+        <input type="text" id="genre" name="genre" required><br><br>
+
+        <label for="release_date">Fecha de Lanzamiento:</label>
+        <input type="date" id="release_date" name="release_date" required><br><br>
+
+        <button type="submit">Crear Álbum</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}">Volver a la lista de albums</a>
+</body>
+</html>

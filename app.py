@@ -1,8 +1,8 @@
 # app.py
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from models import db, Album
-import psycopg2
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -18,6 +18,27 @@ def index():
     # Recuperamos todos los albums desde la base de datos
     albums = Album.query.all()
     return render_template('index.html', albums=albums)
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if request.method == 'POST':
+        # Obtenemos los datos del formulario
+        title = request.form['title']
+        artist = request.form['artist']
+        genre = request.form['genre']
+        release_date = datetime.strptime(request.form['release_date'], '%Y-%m-%d')  # Convertimos la fecha a formato Date
+        
+        # Creamos el nuevo album
+        new_album = Album(title=title, artist=artist, genre=genre, release_date=release_date)
+        
+        # Guardamos en la base de datos
+        db.session.add(new_album)
+        db.session.commit()
+        
+        # Redirigimos a la página principal (index)
+        return redirect(url_for('index'))
+    
+    return render_template('create.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
