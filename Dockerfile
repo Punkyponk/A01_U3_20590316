@@ -1,24 +1,22 @@
-# Usa una imagen oficial de Python como imagen base
+# Usar imagen base de Python
 FROM python:3.10-slim
 
-# Establece un directorio de trabajo dentro del contenedor
+# Instalar las dependencias necesarias para compilar psycopg2
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo de requerimientos al contenedor
+# Copiar el archivo requirements.txt
 COPY requirements.txt /app/
 
-# Instala las dependencias necesarias
+# Instalar las dependencias de Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia todo el código de tu aplicación al contenedor
+# Copiar el resto de los archivos de la aplicación
 COPY . /app/
 
-# Establece la variable de entorno para que Flask corra en modo desarrollo
-ENV FLASK_APP=app.py
-ENV FLASK_ENV=development
-
-# Expón el puerto que Flask usará para servir la aplicación
-EXPOSE 5000
-
-# Comando para ejecutar la aplicación Flask cuando el contenedor se inicie
+# Comando por defecto para ejecutar la app
 CMD ["python", "app.py"]
