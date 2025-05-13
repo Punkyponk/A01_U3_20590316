@@ -7,7 +7,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Configuración de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://samvela_8xau_user:NfJXKKKbJGQK1EjjlKMcfisBjWZaeTEk@dpg-cvnl9are5dus738ks7r0-a.oregon-postgres.render.com/samvela_8xau'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://samvela_5p8g_user:RHlKzHOd8J3aqEmyc4to4rSo90hioz6e@dpg-d0h860q4d50c73b9q14g-a.oregon-postgres.render.com/samvela_5p8g'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializamos la base de datos
