@@ -74,6 +74,6 @@ def delete(id):
     # Redirigimos a la página principal (index)
     return redirect(url_for('index'))
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 
