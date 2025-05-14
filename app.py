@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from models import db, Album
 from datetime import datetime
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://samuel_user:Pass123@postgres-service:5432/samuel_database'
