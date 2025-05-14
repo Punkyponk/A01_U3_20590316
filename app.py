@@ -67,7 +67,7 @@ def delete(id):
     # Recuperamos el álbum a eliminar
     album = Album.query.get_or_404(id)
     
-    # Eliminamos el álbum de la base de datos
+    # Eliminamos el álbum de la base de datos uwu
     db.session.delete(album)
     db.session.commit()
     
@@ -76,3 +76,4 @@ def delete(id):
 
 if _name_ == "_main_":
     app.run(debug=True, host="0.0.0.0")
+
